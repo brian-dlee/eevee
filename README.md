@@ -14,6 +14,27 @@ import { ev, must, pipe, toInt } from "eevee";
 const port: number = ev(process.env, "PORT", pipe(must, toInt));
 ```
 
+## Using composition
+
+```typescript
+function validEmail(v: V<string | undefined>): V<string | undefined> => {
+  if (v.value === undefined) {
+    return v;
+  }
+  if (v.value.indexOf('@') < 0 || /\.[a-z]{2,}$/.test(v.value)) {
+    throw new Error("Value must be an email address.");
+  }
+  return v;
+}
+
+function mustBeEmail(v: V<string | undefined>) {
+  return validEmail(must(v));
+}
+
+const maybeEmail: string | undefined = ev(process.env, "MAYBE_EMAIL", validEmail);
+const adminEmail: string = ev(process.env, "ADMIN_EMAIL", mustBeEmail);
+```
+
 ## Readers
 
 A reader's job is simple - yield an environment variable value by name. The most common
@@ -97,5 +118,13 @@ create an object ready to read variables. It will automatically pull from
 your configured source and pass through your applier as it is used.
 
 ```typescript
+import { asDuration, bind, must, pipe } from "eevee";
+
 const ev = bind(processEnvReader(process.env), consoleLoggerApplier(console));
+
+const host: string = ev("SERVICE_HOST", must);
+const hostTimeoutMilliseconds: number = ev(
+  "SERVICE_TIMEOUT",
+  pipe(must, asDuration),
+);
 ```
