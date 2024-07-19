@@ -9,9 +9,9 @@ of common transformers but the intention is that you can easily add your own.
 ## Basic Usage
 
 ```typescript
-import { ev, must, pipe, toInt } from "eevee";
+import { asInt, ev, must, pipe } from "eevee";
 
-const port: number = ev(process.env, "PORT", pipe(must, toInt));
+const port: number = ev(process.env, "PORT", pipe(must, asInt));
 ```
 
 ## Using composition
