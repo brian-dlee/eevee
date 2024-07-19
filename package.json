@@ -1,6 +1,6 @@
 {
   "name": "@briandlee/eevee",
-  "version": "0.1.0",
+  "version": "0.1.0-post.1",
   "description": "A simple environment variable extraction and validation library.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

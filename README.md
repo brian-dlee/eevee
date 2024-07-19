@@ -21,7 +21,7 @@ function validEmail(v: V<string | undefined>): V<string | undefined> => {
   if (v.value === undefined) {
     return v;
   }
-  if (v.value.indexOf('@') < 0 || /\.[a-z]{2,}$/.test(v.value)) {
+  if (v.value.indexOf('@') < 0 || !/\.[a-z]{2,}$/.test(v.value)) {
     throw new Error("Value must be an email address.");
   }
   return v;
