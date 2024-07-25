@@ -1,6 +1,6 @@
 {
   "name": "@briandlee/eevee",
-  "version": "0.1.0-post.2",
+  "version": "0.1.1",
   "description": "A simple environment variable extraction and validation library.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -17,7 +17,7 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf dist && rollup -c",
     "check": "npm run check:lint && npm run check:types",
     "check:lint": "oxlint -c .oxlintrc.json",
     "check:types": "tsc --noEmit",
@@ -49,6 +49,7 @@
     "oxlint": "^0.6.1",
     "prettier": "^3.3.3",
     "rollup": "^4.18.1",
+    "rollup-plugin-dts": "^6.1.1",
     "ts-jest": "^29.2.3",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3"

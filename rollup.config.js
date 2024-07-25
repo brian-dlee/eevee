@@ -1,3 +1,4 @@
+import dts from "rollup-plugin-dts"
 import typescript from '@rollup/plugin-typescript';
 
 export default {
@@ -9,6 +10,5 @@ export default {
     dir: 'dist/esm',
     format: 'esm'
   }],
-
-  plugins: [typescript()]
+  plugins: [typescript(), dts()]
 };
